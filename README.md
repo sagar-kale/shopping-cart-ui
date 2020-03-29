@@ -4,7 +4,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Prerequisits
 
-Install Npm and node
+Install Npm and Node
+
+Clone this repository - > `git clone https://github.com/sagar-kale/shopping-cart-backend`
+
+Run `cd  shopping-cart-backend`
+
+Install maven and java , set JAVA_HOME, MAVEN_HOME in order to run backend api
+
+Run `mvn spring-boot:run`
 
 ## Development server
 
