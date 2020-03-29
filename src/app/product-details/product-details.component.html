@@ -1,0 +1,93 @@
+<div class="single_product">
+    <div class="container-fluid">
+        <h2>Product Details</h2>
+        <div class="product_image_side">
+            <div class="row" *ngIf="car">
+
+                <div class="col-md-5">
+                    <!-- <img src="../../assets/img/car.jpg" name="stage" width="400" height="400" /> -->
+                    <app-map [latitude]="car.latitude" [longitude]="car.longitude">
+                    </app-map>
+                </div>
+                <div class="col-md-7">
+                    <div class="product_description text-left">
+                        <div class="product_name">{{car.make }} - {{car.model}}</div>
+
+                        <div><span class="product_price">${{car.price}}</span> </div>
+
+                        <hr class="singleline">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="col-md-12">
+                                    <tbody>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Warehouse Name :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li>{{car.warehouseName}}</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Make :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li> {{car.make}} </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Model :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li> {{car.model}} </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Model Year :</span> </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li> {{car.year_model}} </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Licensed :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li> {{ car.licensed ? 'YES' : 'NO' }} </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Location :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li>{{car.location}}</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-primary" (click)="addCart(car)">
+                                                    Add To Cart <mat-icon>add_shopping_cart</mat-icon>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let car of cars">
+            <figure class="card card-product-grid card-lg"> <a class="img-wrap" [class.disabled]="!car.licensed"
+                    data-abc="true" (click)="check($event,car,false)"
+                    [routerLink]="car.licensed ? '/productDetails' : null"><img src="../../assets/img/car.jpg"></a>
+                <figcaption class="info-wrap">
+                    <div class="row">
+                        <div class="col-md-8"> <a class="title" data-abc="true" [class.disabled]="!car.licensed"
+                                (click)="check($event,car,false)"
+                                [routerLink]="car.licensed ? '/productDetails' : null">
+                                {{car.make}} -
+                                {{car.model}}</a> </div>
+                        <div class="col-md-4">
+                            <div class="rating text-right"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                    class="fa fa-star"></i> </div>
+                        </div>
+                    </div>
+                </figcaption>
+                <div class="bottom-wrap"> <a class="btn btn-primary float-right" [class.disabled]="!car.licensed"
+                        data-abc="true" (click)="check($event,car,true)">
+                        Add to Cart </a>
+                    <div class="price-wrap"> <span class="price h5">${{car.price}}</span> <br> <small
+                            class="text-success">Free
+                            shipping</small> </div>
+                </div>
+            </figure>
+        </div>
+    </div>
+</div>
