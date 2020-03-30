@@ -4,6 +4,8 @@ import { CarsComponent } from './cars/cars.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { UserComponent } from './user/user.component';
+import { AuthGuard } from './service/auth.guard';
 
 const routes: Routes = [
   {
@@ -22,6 +24,11 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent
+  },
+  {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

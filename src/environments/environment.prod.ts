@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  globalUrl: 'https://dada3c82.ngrok.io/api',
   mapbox: {
     accessToken:
       'pk.eyJ1Ijoic2FnYXIta2FsZSIsImEiOiJjazhhaDlvcDMwMjhlM3BxcGFzZnNheWg4In0.I6VzMs4Fr5PxcIsnsf-xVQ'

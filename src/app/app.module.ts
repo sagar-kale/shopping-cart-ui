@@ -22,6 +22,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthService } from './service/auth.service';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AuthService } from './service/auth.service';
     HomeComponent,
     ProductDetailsComponent,
     MapComponent,
-    CartComponent
+    CartComponent,
+    UserComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

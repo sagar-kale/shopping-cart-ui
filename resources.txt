@@ -6,3 +6,5 @@ https://bootsnipp.com/amatellanes
 https://codepen.io/cristinaconacel/pen/VVdgjp?editors=0100	
 
 ngc-firebaseuiauth librabry
+
+https://www.codeply.com/go/XefCTinzkY/bootstrap-4-navbar-with-login-form

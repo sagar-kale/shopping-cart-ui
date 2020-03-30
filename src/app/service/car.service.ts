@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { Car } from '../cars/car';
 import { BaseCartItem, CartService } from 'ng-shopping-cart';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-  private globalUrl = 'https://dada3c82.ngrok.io/api';
   readonly CARS = '/cars';
   readonly WAREHOUSE = '/addWarehouse';
   readonly CAR = '/car';
@@ -23,11 +23,11 @@ export class CarService {
   ) {}
 
   getCars(): Observable<Car[]> {
-    return this.http.get<Car[]>(this.globalUrl + this.CARS);
+    return this.http.get<Car[]>(environment.globalUrl + this.CARS);
   }
   getCar(warehouseId: string, carId: string): Observable<Car> {
     return this.http.get<Car>(
-      this.globalUrl +
+      environment.globalUrl +
         this.CAR +
         this.DELIMETER +
         warehouseId +
@@ -37,7 +37,7 @@ export class CarService {
   }
 
   placeOrder(data: any): Observable<HttpResponse<any>> {
-    return this.http.post<any>(this.globalUrl + '/order', data, {
+    return this.http.post<any>(environment.globalUrl + '/order', data, {
       observe: 'response'
     });
   }
