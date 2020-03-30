@@ -16,6 +16,12 @@ import { MapComponent } from './map/map.component';
 import { NavComponent } from './nav/nav.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CarService } from './service/car.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthService } from './service/auth.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +34,9 @@ import { CarService } from './service/car.service';
     CartComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -45,9 +54,10 @@ import { CarService } from './service/car.service';
         storageKey: 'NgShoppingCart',
         clearOnError: true
       }
-    })
+    }),
+    FontAwesomeModule
   ],
-  providers: [CarService],
+  providers: [CarService, AuthService],
   exports: [MatIconModule],
   bootstrap: [AppComponent]
 })

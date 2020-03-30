@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "public": "dist/carui",
+    "site": "frank-garage",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

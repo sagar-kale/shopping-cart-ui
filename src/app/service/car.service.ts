@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class CarService {
-  private globalUrl = '/api';
+  private globalUrl = 'https://dada3c82.ngrok.io/api';
   readonly CARS = '/cars';
   readonly WAREHOUSE = '/addWarehouse';
   readonly CAR = '/car';

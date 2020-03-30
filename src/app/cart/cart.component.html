@@ -2,8 +2,7 @@
     <cart-view [display]="'responsive'">
     </cart-view>
     <cart-checkout [custom]="true">
-        <button type="button" class="btn" (click)="checkout()" *ngIf="!success" [disabled]="orderCount === 0"
-            [ngClass]="orderCount === 0 ? 'btn-secondary' : 'btn-success' ">Checkout</button>
+        <button type="button" class="btn btn-success" (click)="checkout()" *ngIf="!success && orderCount !== 0">Checkout</button>
         <button type="button" class="btn btn-success" *ngIf="success">Placing your order...</button>
     </cart-checkout>
 </div>
