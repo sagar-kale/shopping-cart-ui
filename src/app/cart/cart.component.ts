@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  CartService,
-  BaseCartItem
-} from 'ng-shopping-cart';
+import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { CarService } from '../service/car.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +12,8 @@ export class CartComponent implements OnInit {
   success = false;
   constructor(
     private service: CartService<BaseCartItem>,
-    private apiService: CarService
+    private apiService: CarService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -42,5 +41,9 @@ export class CartComponent implements OnInit {
 
   get orderCount(): number {
     return this.service.itemCount();
+  }
+
+  continueShopping(): void {
+    this.router.navigate(['/cars']);
   }
 }

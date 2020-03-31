@@ -65,9 +65,9 @@ export class CarService {
 
   showSnackbar(message: string, action: string) {
     this.snackBar.open(message, action, {
-      duration: 2000,
+      duration: 2000
       // here specify the position
-      verticalPosition: 'top'
+      // verticalPosition: 'top'
     });
   }
 }

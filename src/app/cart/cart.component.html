@@ -1,8 +1,10 @@
 <div class="container">
     <cart-view [display]="'responsive'">
     </cart-view>
+    <button type="button" class="btn btn-success" (click)="continueShopping()">Continue Shopping</button>&nbsp;&nbsp;
     <cart-checkout [custom]="true">
-        <button type="button" class="btn btn-success" (click)="checkout()" *ngIf="!success && orderCount !== 0">Checkout</button>
+        <button type="button" class="btn btn-success" (click)="checkout()"
+            *ngIf="!success && orderCount !== 0">Checkout</button>
         <button type="button" class="btn btn-success" *ngIf="success">Placing your order...</button>
     </cart-checkout>
 </div>

@@ -8,3 +8,5 @@ https://codepen.io/cristinaconacel/pen/VVdgjp?editors=0100
 ngc-firebaseuiauth librabry
 
 https://www.codeply.com/go/XefCTinzkY/bootstrap-4-navbar-with-login-form
+https://www.techiediaries.com/angular-firebase/angular-9-firebase-authentication-email-google-and-password/
+https://www.positronx.io/full-angular-7-firebase-authentication-system/

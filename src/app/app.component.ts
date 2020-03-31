@@ -9,6 +9,6 @@ export class AppComponent implements OnInit {
   title = `Frank's Garage`;
 
   ngOnInit(): void {
-    window.console.log = () => {};
+  //  window.console.log = () => {};
   }
 }

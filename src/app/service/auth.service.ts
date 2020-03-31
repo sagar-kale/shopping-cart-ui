@@ -38,6 +38,20 @@ export class AuthService {
     return this.updateUserDate(credential.user);
   }
 
+  async facebookLogin() {
+    const provider = new auth.FacebookAuthProvider();
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
+    console.log('Facebook credential::', credential);
+    return this.updateUserDate(credential.user);
+  }
+
+  async githubLogin() {
+    const provider = new auth.GithubAuthProvider();
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
+    console.log('Git credential::', credential);
+    return this.updateUserDate(credential.user);
+  }
+
   async signOut() {
     await this.afAuth.auth.signOut();
     return this.router.navigate(['/']);
