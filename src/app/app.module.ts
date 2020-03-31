@@ -23,6 +23,9 @@ import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthService } from './service/auth.service';
 import { UserComponent } from './user/user.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { VerifyEmailAddressComponent } from './verify-email-address/verify-email-address.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { UserComponent } from './user/user.component';
     ProductDetailsComponent,
     MapComponent,
     CartComponent,
-    UserComponent
+    UserComponent,
+    RegisterComponent,
+    LoginComponent,
+    VerifyEmailAddressComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

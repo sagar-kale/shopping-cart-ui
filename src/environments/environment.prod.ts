@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  globalUrl: 'https://d021a2fd.ngrok.io/api',
+  globalUrl: 'https://sagarkale.cfapps.io/api',
   mapbox: {
     accessToken:
       'pk.eyJ1Ijoic2FnYXIta2FsZSIsImEiOiJjazhhaDlvcDMwMjhlM3BxcGFzZnNheWg4In0.I6VzMs4Fr5PxcIsnsf-xVQ'

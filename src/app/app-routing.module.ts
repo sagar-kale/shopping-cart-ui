@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { UserComponent } from './user/user.component';
 import { AuthGuard } from './service/auth.guard';
+import { RegisterComponent } from './register/register.component';
+import { VerifyEmailAddressComponent } from './verify-email-address/verify-email-address.component';
 
 const routes: Routes = [
   {
@@ -27,8 +29,12 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    component: UserComponent,
+    component: VerifyEmailAddressComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'sign-up',
+    component: RegisterComponent
   }
 ];
 
