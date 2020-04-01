@@ -8,6 +8,8 @@ import { UserComponent } from './user/user.component';
 import { AuthGuard } from './service/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { VerifyEmailAddressComponent } from './verify-email-address/verify-email-address.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthService } from './service/auth.service';
 
 const routes: Routes = [
   {
@@ -39,6 +41,11 @@ const routes: Routes = [
   {
     path: 'verify-email',
     component: VerifyEmailAddressComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

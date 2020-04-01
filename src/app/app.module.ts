@@ -26,6 +26,7 @@ import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { VerifyEmailAddressComponent } from './verify-email-address/verify-email-address.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { VerifyEmailAddressComponent } from './verify-email-address/verify-email
     UserComponent,
     RegisterComponent,
     LoginComponent,
-    VerifyEmailAddressComponent
+    VerifyEmailAddressComponent,
+    ProfileComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
