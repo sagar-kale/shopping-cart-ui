@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { CarService } from '../service/car.service';
 import { Router } from '@angular/router';
+import { faSpinner, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-cart',
@@ -10,11 +11,14 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
   success = false;
+  spinner: IconDefinition;
   constructor(
     private service: CartService<BaseCartItem>,
     private apiService: CarService,
     private router: Router
-  ) {}
+  ) {
+    this.spinner = faSpinner;
+  }
 
   ngOnInit(): void {}
 

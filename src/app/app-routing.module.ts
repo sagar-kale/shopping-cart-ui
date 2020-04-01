@@ -29,12 +29,16 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    component: VerifyEmailAddressComponent,
+    component: UserComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'sign-up',
     component: RegisterComponent
+  },
+  {
+    path: 'verify-email',
+    component: VerifyEmailAddressComponent
   }
 ];
 

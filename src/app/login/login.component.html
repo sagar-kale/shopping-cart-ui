@@ -13,7 +13,11 @@
                     placeholder="Your password...">
             </div>
             <button type="button" class="btn btn-info btn-block btn-round" (click)="signInWithCredentials()"
-                [disabled]="loginForm.invalid">Login</button>
+                [disabled]="loginForm.invalid" *ngIf="!success">Login</button>
+            <button class="btn btn-info btn-block btn-round" [disabled]="true" *ngIf="success">
+                Signing In...
+                <fa-icon [icon]="spinner" [pulse]="true"></fa-icon>
+            </button>
         </form>
 
         <div class="text-center text-muted delimiter">or use a social network</div>
@@ -27,8 +31,8 @@
                 <fa-icon [icon]="faFacebook"></fa-icon>
             </button>
             <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top"
-                title="Linkedin" (click)="auth.githubLogin()">
-                <fa-icon [icon]="faLinkedn"></fa-icon>
+                title="Github" (click)="auth.githubLogin()">
+                <fa-icon [icon]="faGit"></fa-icon>
             </button>
         </div>
     </div>

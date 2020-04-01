@@ -1,1 +1,92 @@
-<p>register works!</p>
+<div class="container-fluid ">
+    <div class="container ">
+        <div class="row cdvfdfd">
+            <div class="col-lg-10 col-md-12 login-box">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 log-det">
+                        <div class="small-logo">
+                            <fa-icon [icon]="faAsy"></fa-icon> Frank's Garage Login
+                        </div>
+                        <p class="dfmn">Please sign up our site using email and passeord , An verification email will be
+                            triggred
+                            So make sure you enter correct email address. </p>
+
+
+
+                        <div class="text-box-cont" [formGroup]="registerForm">
+
+                            <div class=" mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" formControlName="name">
+                            </div>
+
+                            <div class=" mb-3">
+
+                                <input type="email" class="form-control" placeholder="Email" aria-label="Email"
+                                    aria-describedby="basic-addon1" formControlName="email">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Enter Passoword"
+                                    aria-label="passoword" aria-describedby="basic-addon1" formControlName="password">
+                            </div>
+
+                            <div class="input-group center">
+                                <button class="btn btn-danger btn-round" [disabled]="registerForm.invalid"
+                                    *ngIf="!success" (click)="register()">SIGN
+                                    UP</button>
+                                <button class="btn btn-danger btn-round" [disabled]="true" *ngIf="success">
+                                    Registering...
+                                    <fa-icon [icon]="spinner" [pulse]="true"></fa-icon>
+                                </button>
+                            </div>
+                            <div class="row">
+                                <p class="forget-p">Already have an account? <span>Sign In</span></p>
+                            </div>
+                            <div class="row">
+                                <p class="small-info">Connect With Social Media</p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <ul>
+                                <li>
+                                    <fa-icon [icon]="faFacebook" size="2x"></fa-icon>
+                                </li>
+                                <li>
+                                    <fa-icon [icon]="faGoogle" size="2x"></fa-icon>
+                                </li>
+                                <li>
+                                    <fa-icon [icon]="faGit" size="2x"></fa-icon>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 box-de">
+                        <div class="inn-cover">
+                            <div class="ditk-inf">
+                                <div class="small-logo">
+                                    <fa-icon [icon]="faAsy"></fa-icon> Frank's Garage
+                                </div>
+                                <h2 class="w-100">Din't Have an Account </h2>
+                                <p>Please sign up our site using email and passeord , An verification email will be
+                                    triggred
+                                    So make sure you enter correct email address.
+                                </p>
+                                <a routerLink="/sign-up">
+                                    <button type="button" class="btn btn-outline-light">SIGN UP</button>
+                                </a>
+                            </div>
+                            <div class="foter-credit">
+                                <a href="https://faceook.com/sgrkale143">Designed by : Sagar kale</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

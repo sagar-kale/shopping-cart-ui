@@ -27,7 +27,16 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | boolean {
     return this.auth.user$.pipe(
       take(1),
-      map(user => !!user), // <-- map to boolean ,same as user !== null
+      map(user => {
+        if (user) {
+          if (!user.emailVerified) {
+            return false;
+          } else {
+            return true;
+          }
+        }
+        return false;
+      }), // <-- map to boolean ,same as user !== null
       tap(loggedIn => {
         if (!loggedIn) {
           this.service.showSnackbar(

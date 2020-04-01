@@ -3,12 +3,14 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import {
   faFacebook,
   faGoogle,
-  faLinkedin,
+  faGithub,
   IconDefinition
 } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from '../service/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,22 +21,23 @@ export class LoginComponent implements OnInit {
   faFacebook: IconDefinition;
   faGoogle: IconDefinition;
   faTwitter: IconDefinition;
-  faLinkedn: IconDefinition;
+  faGit: IconDefinition;
   loginForm: FormGroup;
+  spinner: IconDefinition;
+  success = false;
 
   constructor(
-    private library: FaIconLibrary,
     public auth: AuthService,
     private formBuilder: FormBuilder,
-    private snackbar: MatSnackBar
-  ) {
-    library.addIcons(faFacebook, faLinkedin, faGoogle, faLinkedin);
-  }
+    private snackbar: MatSnackBar,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.faFacebook = faFacebook;
     this.faGoogle = faGoogle;
-    this.faLinkedn = faLinkedin;
+    this.faGit = faGithub;
+    this.spinner = faSpinner;
     this.buildForm();
   }
 
@@ -46,20 +49,23 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithCredentials(): void {
-    const email = this.getValue('email');
-    const password = this.getValue('password');
+    this.success = true;
     this.auth
-      .signInWithCredentials(email, password)
+      .signInWithCredentials(this.loginForm.value)
       .then(() => {
-        console.log('login success');
+        this.router.navigate(['/']);
+        this.success = false;
       })
       .catch(err => {
         this.openSnackBar(err.message, 'Ok');
+        this.success = false;
       });
   }
+
   getValue(control: string): string {
     return this.loginForm.get(control).value;
   }
+
   openSnackBar(msg: string, action: string): void {
     this.snackbar.open(msg, action);
   }

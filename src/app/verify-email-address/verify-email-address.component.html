@@ -1,26 +1,24 @@
-<div class="displayTable">
+<div class="displayTable jumbotron" *ngIf="authService.user$ | async as user">
     <div class="displayTableCell">
 
         <div class="px-logo">
-            <a href="https://www.positronx.io" target="_blank">
-                <img src="https://www.positronx.io/wp-content/themes/positronx/img/logo-positronx-white.svg"
-                    alt="positronX.io - Learn Full Stack Development">
-            </a>
+
         </div>
 
         <div class="authBlock">
             <h3>Thank You for Registering</h3>
 
-            <div class="formGroup" *ngIf="authService.user$ | async as user ">
+            <div class="formGroup">
                 <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
                 <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
             </div>
 
             <!-- Calling SendVerificationMail() method using authService Api -->
             <div class="formGroup">
-                <button type="button" class="btn btnPrimary" (click)="authService.sendVarificationMail()">
+                <button type="button" class="btn btnPrimary" (click)="resendVerification()" [disabled]="success">
                     <fa-icon [icon]="faRedoAlt"></fa-icon>
-                    Resend Verification Email
+                    <span *ngIf="!success"> Resend Verification Email</span>
+                    <span *ngIf="success"> Resend again in {{timeLeft}} seconds</span>
                 </button>
             </div>
 

@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faFacebook, faGoogle, faLinkedin, IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import {
+  faFacebook,
+  faGoogle,
+  faLinkedin,
+  IconDefinition
+} from '@fortawesome/free-brands-svg-icons';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../service/auth.service';
+import { User } from '../service/user';
 
 @Component({
   selector: 'app-nav',

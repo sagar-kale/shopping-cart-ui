@@ -32,6 +32,7 @@
     "firebase": "^7.13.1",
     "mapbox-gl": "^1.9.0",
     "ng-shopping-cart": "^1.0.0",
+    "roboto-fontface": "^0.10.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

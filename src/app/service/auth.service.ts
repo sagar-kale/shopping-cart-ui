@@ -10,6 +10,7 @@ import { auth } from 'firebase/app';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from './user';
+import { Credentials } from './credentials';
 
 @Injectable({
   providedIn: 'root'
@@ -43,35 +44,39 @@ export class AuthService {
   async facebookLogin() {
     const provider = new auth.FacebookAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    console.log('Facebook credential::', credential);
+    // console.log('Facebook credential::', credential);
     return this.updateUserData(credential.user);
   }
 
   async githubLogin() {
     const provider = new auth.GithubAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    console.log('Git credential::', credential);
+    // console.log('Git credential::', credential);
     return this.updateUserData(credential.user);
   }
 
-  async signInWithCredentials(email: string, password: string) {
+  async signInWithCredentials({ email, password }: Credentials) {
     const credentials = await this.afAuth.auth.signInWithEmailAndPassword(
       email,
       password
     );
+    //  console.log(credentials.user);
+    if (!credentials.user.emailVerified) {
+      throw new Error('Please verify email first!');
+    }
     return this.updateUserData(credentials.user);
   }
 
-  async registerUser(email: string, password: string) {
+  async registerUser(creds: Credentials) {
     const credential = await this.afAuth.auth.createUserWithEmailAndPassword(
-      email,
-      password
+      creds.email,
+      creds.password
     );
-    console.log(
-      'register from frebase:::',
-      credential.user,
-      credential.additionalUserInfo
-    );
+    await this.afAuth.auth.currentUser.updateProfile({
+      displayName: creds.name,
+      photoURL: creds.photoURL
+    });
+
     this.sendVarificationMail();
     return this.updateUserData(credential.user);
   }
@@ -102,16 +107,12 @@ export class AuthService {
       photoURL,
       emailVerified
     };
+    //  console.log('data from new obj::', data);
     return userRef.set(data, { merge: true });
   }
 
-  public async sendVarificationMail() {
-    try {
-      await this.afAuth.auth.currentUser.sendEmailVerification();
-      this.router.navigate(['/varify-email-address']);
-    } catch (err) {
-      this.snackBar.open(err, 'OK');
-    }
+  async sendVarificationMail() {
+    return await this.afAuth.auth.currentUser.sendEmailVerification();
   }
 
   // Reset Forggot password

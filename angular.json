@@ -30,7 +30,8 @@
             "styles": [
               "node_modules/ng-shopping-cart/styles/css/ng-shopping-cart.css",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/roboto-fontface/css/roboto/sass/roboto-fontface.scss"
             ],
             "scripts": []
           },
