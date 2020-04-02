@@ -1,148 +1,192 @@
-<div class="container emp-profile" *ngIf="auth.user$ | async as user">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                        alt="" *ngIf="!user.displayName" />
-                    <img [src]="user.photoURL" alt="" *ngIf="user.photoURL" />
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file" />
+<div class="jumbotron mt-5" *ngIf="auth.user$ | async as user">
+    <div class="row flex-lg-nowrap">
+
+        <div class="col-lg-3 ">
+            <div class="card left-profile-card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <img *ngIf="user.photoURL" [src]="user.photoURL" [alt]="user.displayName" class="user-profile">
+                        <img *ngIf="!user.photoURL" src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                            [alt]="user.displayName" class="user-profile">
+                        <h3>{{user.displayName}}</h3>
+                        <p>World of Internet</p>
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-star text-info"></i>
+                            <i class="fas fa-star text-info"></i>
+                            <i class="fas fa-star text-info"></i>
+                            <i class="fas fa-star text-info"></i>
+                            <i class="fas fa-star text-info"></i>
+                        </div>
+                    </div>
+                    <div class="personal-info">
+                        <h3>Personal Information</h3>
+                        <ul class="personal-list">
+                            <li><i class="fas fa-briefcase "></i><span>Web Designer</span></li>
+                            <li><i class="fas fa-map-marker-alt "></i><span> New York</span></li>
+                            <li><i class="far fa-envelope "></i><span>like @example.com</span></li>
+                            <li><i class="fas fa-mobile "></i><span>1234564343</span></li>
+                        </ul>
+                    </div>
+                    <div class="skill">
+                        <h3>Skills</h3>
+                        <p>Adobe Photoshop</p>
+                        <div class="progress mb-3">
+                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="50"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p>HTML5 &amp; CSS3</p>
+                        <div class="progress mb-3">
+                            <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="50"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p>Javascript &amp; Jquery</p>
+                        <div class="progress mb-3">
+                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="50"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <h5>
-                        {{user.displayName}}
-                    </h5>
-                    <h6>
-                        Web Developer and Designer
-                    </h6>
-                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        </div>
+        <div class="col-lg-9">
+            <div class="card right-profile-card">
+                <div class="card-header alert-primary">
+                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                aria-controls="home" aria-selected="true">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                aria-controls="profile" aria-selected="false">Timeline</a>
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                                role="tab" aria-selected="true">Edit Profile</a>
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p>WORK LINK</p>
-                    <a href="">Website Link</a><br />
-                    <a href="">Bootsnipp Profile</a><br />
-                    <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br />
-                    <a href="">Web Developer</a><br />
+                <div class="card-body">
+
+
+                    <div class="e-profile">
+                        <div class="row">
+                            <div class="col-12 col-sm-auto mb-3">
+                                <img *ngIf="user.photoURL" [src]="user.photoURL" [alt]="user.displayName"
+                                    class="d-flex justify-content-center align-items-center rounded"
+                                    style="width: 140px;">
+                                <div *ngIf="!user.photoURL" class="mx-auto" style="width: 140px;">
+                                    <div class="d-flex justify-content-center align-items-center rounded"
+                                        style="height: 140px; background-color: rgb(233, 236, 239);">
+                                        <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.displayName}}</h4>
+                                    <p class="mb-0">{{user.email}}</p>
+                                    <div class="text-muted"><small>Last seen 2 hours
+                                            ago</small></div>
+                                    <div class="mt-2">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-fw fa-camera"></i>
+                                            <span>Change Photo</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="text-center text-sm-right">
+                                    <span class="badge badge-secondary">administrator</span>
+                                    <div class="text-muted"><small>Joined 09 Dec
+                                            2017</small></div>
+
+                                    <div class=" ml-auto mt-5">
+                                        <button class="btn btn-block btn-secondary">
+                                            <i class="fa fa-sign-out"></i>
+                                            <span>Logout</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="tab-pane active">
+                            <form class="form" novalidate="">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>Full Name</label>
+                                                    <input class="form-control" type="text" name="name"
+                                                        placeholder="John Smith" value="John Smith">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>Username</label>
+                                                    <input class="form-control" type="text" name="username"
+                                                        placeholder="johnny.s" value="johnny.s">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input class="form-control" type="text"
+                                                        placeholder="user@example.com">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 mb-3">
+                                        <div class="mb-2"><b>Phone</b>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>Phone Number</label>
+                                                    <input class="form-control" type="password" placeholder="+91">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                                        <div class="mb-2"><b>Keeping in
+                                                Touch</b></div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>Email
+                                                    Notifications</label>
+                                                <div class="custom-controls-stacked px-2">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            id="notifications-blog" checked="">
+                                                        <label class="custom-control-label"
+                                                            for="notifications-blog">Blog
+                                                            posts</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            id="notifications-news" checked="">
+                                                        <label class="custom-control-label"
+                                                            for="notifications-news">Newsletter</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-end">
+                                        <button class="btn btn-primary" type="submit">Save
+                                            Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>User Id</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.displayName}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.displayName}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.email}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>123 456 7890</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Profession</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Web Developer and Designer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Experience</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Hourly Rate</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>10$/hr</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Total Projects</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>230</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>English Level</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Availability</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>6 months</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br />
-                                <p>Your detail description</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </form>
+    </div>
 </div>

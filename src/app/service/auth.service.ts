@@ -38,20 +38,21 @@ export class AuthService {
   async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
+    this.checkIfEmailVerified(credential.user);
     return this.updateUserData(credential.user);
   }
 
   async facebookLogin() {
     const provider = new auth.FacebookAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    // console.log('Facebook credential::', credential);
+    this.checkIfEmailVerified(credential.user);
     return this.updateUserData(credential.user);
   }
 
   async githubLogin() {
     const provider = new auth.GithubAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    // console.log('Git credential::', credential);
+    this.checkIfEmailVerified(credential.user);
     return this.updateUserData(credential.user);
   }
 
@@ -118,5 +119,13 @@ export class AuthService {
   // Reset Forggot password
   async resetPassword(resetEmail: string) {
     return await this.afAuth.auth.sendPasswordResetEmail(resetEmail);
+  }
+
+  checkIfEmailVerified(creds: firebase.User): void {
+    if (!creds.emailVerified) {
+      this.snackBar.open('Please Verify Your Email address', 'OK');
+      this.sendVarificationMail();
+      this.router.navigate(['/verify-email']);
+    }
   }
 }
