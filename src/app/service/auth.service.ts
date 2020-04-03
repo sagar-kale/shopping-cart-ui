@@ -18,7 +18,7 @@ import * as firebase from 'firebase';
 })
 export class AuthService {
   user$: Observable<User>;
-  firebaseAnalytics: firebase.analytics.Analytics;
+  // firebaseAnalytics: firebase.analytics.Analytics;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -26,7 +26,7 @@ export class AuthService {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    this.firebaseAnalytics = firebase.analytics();
+    //   this.firebaseAnalytics = firebase.analytics();
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {

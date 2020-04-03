@@ -103,9 +103,6 @@ export class LoginComponent implements OnInit {
     this.auth
       .githubLogin()
       .then(user => {
-        this.auth.firebaseAnalytics.logEvent('login', {
-          name: user.displayName
-        });
         if (!user.emailVerified) {
           this.router.navigate(['/verify-email']);
           return;
