@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   success = false;
 
   constructor(
-    public auth: AuthService,
+    private auth: AuthService,
     private formBuilder: FormBuilder,
     private snackbar: MatSnackBar,
     private router: Router
@@ -52,7 +52,11 @@ export class LoginComponent implements OnInit {
     this.success = true;
     this.auth
       .signInWithCredentials(this.loginForm.value)
-      .then(() => {
+      .then(user => {
+        if (!user.emailVerified) {
+          this.router.navigate(['/verify-email']);
+          return;
+        }
         this.router.navigate(['/']);
         this.success = false;
       })
@@ -68,5 +72,46 @@ export class LoginComponent implements OnInit {
 
   openSnackBar(msg: string, action: string): void {
     this.snackbar.open(msg, action);
+  }
+
+  facebookSignIn() {
+    this.auth
+      .facebookLogin()
+      .then(user => {
+        if (!user.emailVerified) {
+          this.router.navigate(['/verify-email']);
+          return;
+        }
+        this.router.navigate(['/']);
+      })
+      .catch(err => this.openSnackBar(err.message, 'Ok'));
+  }
+
+  googleLogin() {
+    this.auth
+      .googleSignIn()
+      .then(user => {
+        if (!user.emailVerified) {
+          this.router.navigate(['/verify-email']);
+          return;
+        }
+        this.router.navigate(['/']);
+      })
+      .catch(err => this.openSnackBar(err.message, 'Ok'));
+  }
+  gitHubLogin() {
+    this.auth
+      .githubLogin()
+      .then(user => {
+        this.auth.firebaseAnalytics.logEvent('login', {
+          name: user.displayName
+        });
+        if (!user.emailVerified) {
+          this.router.navigate(['/verify-email']);
+          return;
+        }
+        this.router.navigate(['/']);
+      })
+      .catch(err => this.openSnackBar(err.message, 'Ok'));
   }
 }

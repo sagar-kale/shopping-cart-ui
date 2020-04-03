@@ -19,6 +19,7 @@ import { CarService } from './service/car.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthService } from './service/auth.service';
@@ -27,6 +28,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { VerifyEmailAddressComponent } from './verify-email-address/verify-email-address.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DataService } from './shared/data.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAnalyticsModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserModule,
@@ -67,7 +70,7 @@ import { ProfileComponent } from './profile/profile.component';
     }),
     FontAwesomeModule
   ],
-  providers: [CarService, AuthService],
+  providers: [CarService, AuthService, DataService],
   exports: [MatIconModule],
   bootstrap: [AppComponent]
 })

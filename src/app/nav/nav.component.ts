@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import {
   faFacebook,
@@ -8,7 +10,6 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../service/auth.service';
-import { User } from '../service/user';
 
 @Component({
   selector: 'app-nav',
@@ -22,7 +23,7 @@ export class NavComponent implements OnInit {
   faTwitter: IconDefinition;
   settings: IconDefinition;
 
-  constructor(private library: FaIconLibrary, public auth: AuthService) {
+  constructor(public library: FaIconLibrary, public auth: AuthService) {
     library.addIcons(faFacebook, faLinkedin, faGoogle, faLinkedin, faCog);
   }
 

@@ -64,13 +64,16 @@
                     <div class="e-profile">
                         <div class="row">
                             <div class="col-12 col-sm-auto mb-3">
-                                <img *ngIf="user.photoURL" [src]="user.photoURL" [alt]="user.displayName"
-                                    class="d-flex justify-content-center align-items-center rounded"
-                                    style="width: 140px;">
-                                <div *ngIf="!user.photoURL" class="mx-auto" style="width: 140px;">
-                                    <div class="d-flex justify-content-center align-items-center rounded"
+
+                                <div class="mx-auto sm-width-140">
+                                    <div *ngIf="!user.photoURL"
+                                        class="d-flex justify-content-center align-items-center rounded"
                                         style="height: 140px; background-color: rgb(233, 236, 239);">
                                         <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                                    </div>
+                                    <div *ngIf="user.photoURL"
+                                        class="d-flex justify-content-center align-items-center rounded">
+                                        <img [src]="user.photoURL" [alt]="user.displayName" class="sm-height-140">
                                     </div>
                                 </div>
                             </div>
@@ -78,8 +81,9 @@
                                 <div class="text-center text-sm-left mb-2 mb-sm-0">
                                     <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.displayName}}</h4>
                                     <p class="mb-0">{{user.email}}</p>
-                                    <div class="text-muted"><small>Last seen 2 hours
-                                            ago</small></div>
+                                    <div class="text-muted"><small>Last Login:
+                                            {{currentUser.metadata.lastSignInTime}}</small>
+                                    </div>
                                     <div class="mt-2">
                                         <button class="btn btn-primary" type="button">
                                             <i class="fa fa-fw fa-camera"></i>
@@ -89,11 +93,12 @@
                                 </div>
                                 <div class="text-center text-sm-right">
                                     <span class="badge badge-secondary">administrator</span>
-                                    <div class="text-muted"><small>Joined 09 Dec
-                                            2017</small></div>
+                                    <div class="text-muted"><small>Joined
+                                            {{currentUser.metadata.creationTime | date}}</small>
+                                    </div>
 
                                     <div class=" ml-auto mt-5">
-                                        <button class="btn btn-block btn-secondary">
+                                        <button class="btn btn-block btn-secondary" (click)="auth.signOut()">
                                             <i class="fa fa-sign-out"></i>
                                             <span>Logout</span>
                                         </button>

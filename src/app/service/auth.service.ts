@@ -11,12 +11,14 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from './user';
 import { Credentials } from './credentials';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user$: Observable<User>;
+  firebaseAnalytics: firebase.analytics.Analytics;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -24,6 +26,7 @@ export class AuthService {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
+    this.firebaseAnalytics = firebase.analytics();
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -39,21 +42,24 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
     this.checkIfEmailVerified(credential.user);
-    return this.updateUserData(credential.user);
+    this.updateUserData(credential.user);
+    return this.currentUser();
   }
 
   async facebookLogin() {
     const provider = new auth.FacebookAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
     this.checkIfEmailVerified(credential.user);
-    return this.updateUserData(credential.user);
+    this.updateUserData(credential.user);
+    return this.currentUser();
   }
 
   async githubLogin() {
     const provider = new auth.GithubAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
     this.checkIfEmailVerified(credential.user);
-    return this.updateUserData(credential.user);
+    this.updateUserData(credential.user);
+    return this.currentUser();
   }
 
   async signInWithCredentials({ email, password }: Credentials) {
@@ -65,7 +71,8 @@ export class AuthService {
     if (!credentials.user.emailVerified) {
       throw new Error('Please verify email first!');
     }
-    return this.updateUserData(credentials.user);
+    this.updateUserData(credentials.user);
+    return this.currentUser();
   }
 
   async registerUser(creds: Credentials) {
@@ -79,7 +86,12 @@ export class AuthService {
     });
 
     this.sendVarificationMail();
-    return this.updateUserData(credential.user);
+    this.updateUserData(credential.user);
+    return this.currentUser();
+  }
+
+  currentUser(): User {
+    return this.afAuth.auth.currentUser;
   }
 
   async signOut() {
@@ -121,11 +133,10 @@ export class AuthService {
     return await this.afAuth.auth.sendPasswordResetEmail(resetEmail);
   }
 
-  checkIfEmailVerified(creds: firebase.User): void {
+  checkIfEmailVerified(creds: User): void {
     if (!creds.emailVerified) {
       this.snackBar.open('Please Verify Your Email address', 'OK');
       this.sendVarificationMail();
-      this.router.navigate(['/verify-email']);
     }
   }
 }

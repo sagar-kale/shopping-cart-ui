@@ -10,6 +10,7 @@ import {
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { User } from '../service/user';
 
 @Component({
   selector: 'app-profile',
@@ -23,8 +24,11 @@ export class ProfileComponent implements OnInit {
   faGit: IconDefinition;
   spinner: IconDefinition;
   success = false;
+  currentUser: User;
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService) {
+    this.currentUser = auth.currentUser();
+  }
 
   ngOnInit(): void {
     this.faFacebook = faFacebook;

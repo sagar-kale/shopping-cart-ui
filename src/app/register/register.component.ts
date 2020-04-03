@@ -62,9 +62,11 @@ export class RegisterComponent implements OnInit {
     this.success = true;
     this.auth
       .registerUser(this.registerForm.value)
-      .then(() => {
+      .then(user => {
         this.success = false;
-        this.router.navigate(['/verify-email']);
+        if (!user.emailVerified) {
+          this.router.navigate(['/verify-email']);
+        }
       })
       .catch(err => {
         this.carService.showSnackbar(err.message, 'Ok');
