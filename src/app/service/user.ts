@@ -7,6 +7,6 @@ export class User {
   photoURL?: string;
   displayName?: string;
   emailVerified?: boolean;
-  providerId?: string;
+  phone?: string;
   metadata?: auth.UserMetadata;
 }

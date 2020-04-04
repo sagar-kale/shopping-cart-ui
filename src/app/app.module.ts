@@ -21,7 +21,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { environment } from 'src/environments/environment';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
 import { AuthService } from './service/auth.service';
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
@@ -29,6 +32,9 @@ import { LoginComponent } from './login/login.component';
 import { VerifyEmailAddressComponent } from './verify-email-address/verify-email-address.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DataService } from './shared/data.service';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,8 @@ import { DataService } from './shared/data.service';
     RegisterComponent,
     LoginComponent,
     VerifyEmailAddressComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -65,13 +72,17 @@ import { DataService } from './shared/data.service';
       serviceType: 'localStorage',
       serviceOptions: {
         storageKey: 'NgShoppingCart',
-        clearOnError: true
-      }
+        clearOnError: true,
+      },
     }),
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [CarService, AuthService, DataService],
   exports: [MatIconModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas, far);
+  }
+}

@@ -1,17 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../service/auth.service';
-import {
-  faFacebook,
-  faGoogle,
-  faGithub,
-  faTwitter,
-  IconDefinition,
-} from '@fortawesome/free-brands-svg-icons';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { faFacebook, faGithub, faGoogle, faTwitter, IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { User } from '../service/user';
-
+import { AuthService } from '../service/auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

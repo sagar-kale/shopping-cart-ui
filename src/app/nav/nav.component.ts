@@ -6,15 +6,15 @@ import {
   faFacebook,
   faGoogle,
   faLinkedin,
-  IconDefinition
+  IconDefinition,
 } from '@fortawesome/free-brands-svg-icons';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
   title = `Car Deals`;
@@ -22,6 +22,8 @@ export class NavComponent implements OnInit {
   faGoogle: IconDefinition;
   faTwitter: IconDefinition;
   settings: IconDefinition;
+  fasignOut: IconDefinition;
+  faUser: IconDefinition;
 
   constructor(public library: FaIconLibrary, public auth: AuthService) {
     library.addIcons(faFacebook, faLinkedin, faGoogle, faLinkedin, faCog);
@@ -31,5 +33,7 @@ export class NavComponent implements OnInit {
     this.faFacebook = faFacebook;
     this.faGoogle = faGoogle;
     this.settings = faCog;
+    this.fasignOut = faSignOutAlt;
+    this.faUser = faUser;
   }
 }

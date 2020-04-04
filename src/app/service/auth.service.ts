@@ -110,24 +110,19 @@ export class AuthService {
     displayName,
     photoURL,
     emailVerified,
-    providerId,
     metadata,
   }: User) {
     const userRef: AngularFirestoreDocument<User> = this.afStore.doc(
       `users/${uid}`
     );
 
-    metadata = {
-      creationTime: metadata.creationTime,
-      lastSignInTime: metadata.lastSignInTime,
-    };
+    metadata = { creationTime: metadata.creationTime , lastSignInTime: metadata.lastSignInTime};
     const data = {
       uid,
       email,
       displayName,
       photoURL,
       emailVerified,
-      providerId,
       metadata,
     };
     //  console.log('data from new obj::', data);

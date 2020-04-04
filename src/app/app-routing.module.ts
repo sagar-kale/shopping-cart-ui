@@ -10,47 +10,26 @@ import { RegisterComponent } from './register/register.component';
 import { VerifyEmailAddressComponent } from './verify-email-address/verify-email-address.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthService } from './service/auth.service';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'cars', component: CarsComponent },
+  { path: 'productDetails', component: ProductDetailsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { path: 'sign-up', component: RegisterComponent },
+  { path: 'verify-email', component: VerifyEmailAddressComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {
-    path: '',
-    component: HomeComponent,
-    pathMatch: 'full'
+    path: 'change-pwd',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
   },
-  {
-    path: 'cars',
-    component: CarsComponent
-  },
-  {
-    path: 'productDetails',
-    component: ProductDetailsComponent
-  },
-  {
-    path: 'cart',
-    component: CartComponent
-  },
-  {
-    path: 'user',
-    component: UserComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'sign-up',
-    component: RegisterComponent
-  },
-  {
-    path: 'verify-email',
-    component: VerifyEmailAddressComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuard]
-  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
