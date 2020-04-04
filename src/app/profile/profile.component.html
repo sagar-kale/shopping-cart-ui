@@ -18,16 +18,16 @@
                             <i class="fas fa-star text-info"></i>
                         </div>
                     </div>
-                    <div class="personal-info">
+                    <div class="personal-info text-center">
                         <h3>Personal Information</h3>
                         <ul class="personal-list">
                             <li><i class="fas fa-briefcase "></i><span>Web Designer</span></li>
                             <li><i class="fas fa-map-marker-alt "></i><span> New York</span></li>
-                            <li><i class="far fa-envelope "></i><span>like @example.com</span></li>
+                            <li><i class="far fa-envelope "></i><span>{{user.email}}</span></li>
                             <li><i class="fas fa-mobile "></i><span>1234564343</span></li>
                         </ul>
                     </div>
-                    <div class="skill">
+                    <div class="skill text-center">
                         <h3>Skills</h3>
                         <p>Adobe Photoshop</p>
                         <div class="progress mb-3">
@@ -82,7 +82,7 @@
                                     <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.displayName}}</h4>
                                     <p class="mb-0">{{user.email}}</p>
                                     <div class="text-muted"><small>Last Login:
-                                            {{currentUser.metadata.lastSignInTime}}</small>
+                                            {{user.metadata.lastSignInTime}}</small>
                                     </div>
                                     <div class="mt-2">
                                         <button class="btn btn-primary" type="button">
@@ -94,7 +94,7 @@
                                 <div class="text-center text-sm-right">
                                     <span class="badge badge-secondary">administrator</span>
                                     <div class="text-muted"><small>Joined
-                                            {{currentUser.metadata.creationTime | date}}</small>
+                                            {{user.metadata.creationTime | date}}</small>
                                     </div>
 
                                     <div class=" ml-auto mt-5">

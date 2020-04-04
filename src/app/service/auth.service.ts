@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {
   AngularFirestore,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { Credentials } from './credentials';
 import * as firebase from 'firebase';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   user$: Observable<User>;
@@ -28,7 +28,7 @@ export class AuthService {
   ) {
     //   this.firebaseAnalytics = firebase.analytics();
     this.user$ = this.afAuth.authState.pipe(
-      switchMap(user => {
+      switchMap((user) => {
         if (user) {
           return this.afStore.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
@@ -82,7 +82,7 @@ export class AuthService {
     );
     await this.afAuth.auth.currentUser.updateProfile({
       displayName: creds.name,
-      photoURL: creds.photoURL
+      photoURL: creds.photoURL,
     });
 
     this.sendVarificationMail();
@@ -90,7 +90,8 @@ export class AuthService {
     return this.currentUser();
   }
 
-  currentUser(): User {
+  async currentUser(): Promise<User> {
+    await this.afAuth.auth.currentUser.reload();
     return this.afAuth.auth.currentUser;
   }
 
@@ -108,17 +109,26 @@ export class AuthService {
     email,
     displayName,
     photoURL,
-    emailVerified
+    emailVerified,
+    providerId,
+    metadata,
   }: User) {
     const userRef: AngularFirestoreDocument<User> = this.afStore.doc(
       `users/${uid}`
     );
+
+    metadata = {
+      creationTime: metadata.creationTime,
+      lastSignInTime: metadata.lastSignInTime,
+    };
     const data = {
       uid,
       email,
       displayName,
       photoURL,
-      emailVerified
+      emailVerified,
+      providerId,
+      metadata,
     };
     //  console.log('data from new obj::', data);
     return userRef.set(data, { merge: true });

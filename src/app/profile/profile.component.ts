@@ -5,7 +5,7 @@ import {
   faGoogle,
   faGithub,
   faTwitter,
-  IconDefinition
+  IconDefinition,
 } from '@fortawesome/free-brands-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,7 +15,7 @@ import { User } from '../service/user';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
   faFacebook: IconDefinition;
@@ -24,11 +24,8 @@ export class ProfileComponent implements OnInit {
   faGit: IconDefinition;
   spinner: IconDefinition;
   success = false;
-  currentUser: User;
 
-  constructor(public auth: AuthService) {
-    this.currentUser = auth.currentUser();
-  }
+  constructor(public auth: AuthService) {}
 
   ngOnInit(): void {
     this.faFacebook = faFacebook;
