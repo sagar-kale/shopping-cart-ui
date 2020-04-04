@@ -35,6 +35,7 @@ import { DataService } from './shared/data.service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
     VerifyEmailAddressComponent,
     ProfileComponent,
     ChangePasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

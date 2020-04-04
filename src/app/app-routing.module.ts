@@ -11,6 +11,7 @@ import { VerifyEmailAddressComponent } from './verify-email-address/verify-email
 import { ProfileComponent } from './profile/profile.component';
 import { AuthService } from './service/auth.service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
     component: ChangePasswordComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'reset-password', component: ForgotPasswordComponent }
 ];
 
 @NgModule({
