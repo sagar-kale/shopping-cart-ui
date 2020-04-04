@@ -17,7 +17,7 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  title = `Frank's Garage`;
+  title = `Car Deals`;
   faFacebook: IconDefinition;
   faGoogle: IconDefinition;
   faTwitter: IconDefinition;
